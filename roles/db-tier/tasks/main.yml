@@ -4,16 +4,14 @@
   yum:
     name: postgresql-server
     state: latest
-
-- name: Check database initialization
-  command: postgresql-check-db-dir  {{ postgres_db_dir }}
-  register: check_db_output
-  changed_when: check_db_output == 1
-  ignore_errors: yes
   
-- name: initilize postgres db if db is not initialized
-  shell: postgresql-setup initdb
-  when: check_db_output.rc != 0
+- name: Initilize postgres
+  command: postgresql-setup initdb
+  register: r_postgres_init
+  changed_when: r_postgres_init.rc == 0
+  failed_when: >-
+    r_postgres_init.rc != 0 and
+    r_postgres_init.stdout != 'Data directory is not empty!'
 
 - name: start and enable postgres
   service:

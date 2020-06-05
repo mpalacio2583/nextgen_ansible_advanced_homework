@@ -32,7 +32,8 @@
   when: epel_stat.stat.exists
 
 - name: Run yum clean
-  shell: yum clean all
+#  shell: yum clean all
+  command: yum clean all
 
 
 #- name: setup hostname
