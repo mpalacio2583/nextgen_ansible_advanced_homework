@@ -6,7 +6,7 @@
   - name: Fetch Instance Info
     os_server_facts:
       cloud: openstack
-      region_name: RegionOne
+#      region_name: RegionOne
     register: result
   - name: Delete instances
     os_server:
