@@ -19,8 +19,8 @@
 #    name: "{{ inventory_hostname }}"
  
 - name: install base tools and packages
-    yum:
-      name:
-        - python-pip
-        - gcc
-      state: latest
+  yum:
+    name:
+      - python-pip
+      - gcc
+    state: latest
