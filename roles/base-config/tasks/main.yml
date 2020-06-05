@@ -8,11 +8,16 @@
     replace: 'Defaults  !requiretty'
     backup: yes
 
-- name: enable repos
-  template:
-    src: repos_template.j2
-    dest: /etc/yum.repos.d/open_three-tier-app.repo
-    mode: 0644
+#- name: enable repos
+#  template:
+#    src: repos_template.j2
+#    dest: /etc/yum.repos.d/open_three-tier-app.repo
+#    mode: 0644
+
+- name: Install EPEL repos 
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    state: present 
 
 #- name: setup hostname
 #  hostname:
